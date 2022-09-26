@@ -1,0 +1,56 @@
+/*Universal page settings*/
+* {
+  box-sizing: border-box;
+}
+/*Defines style of page*/
+html,
+body,
+.wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f9fbfd;
+}
+
+.wrapper {
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/*Defines style of header*/
+header {
+  text-align: center;
+  padding: 20px;
+  padding-top: 0px;
+  color: #136111
+}
+/*Defines style of card*/
+.card {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 5px;
+  border-width: 1px;
+  box-shadow: rgb(80, 92, 226) 0px 2px 8px 0px;
+  color: #136111;
+  font-size: 18px;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 30px 40px;
+}
+
+/*Page responsiveness to various sizes*/
+@media (max-width: 690px) {
+  .btn {
+    font-size: 1rem;
+    margin: 16px 0px 0px 0px;
+    padding: 10px 15px;
+  }
+}
+@media (max-width: 500px) {
+  .btn {
+    font-size: 0.8rem;
+  }
+}
