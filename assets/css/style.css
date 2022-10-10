@@ -1,56 +1,82 @@
-/*Universal page settings*/
-* {
-  box-sizing: border-box;
-}
-/*Defines style of page*/
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: sans-serif;
-  background-color: #f9fbfd;
-}
-
-.wrapper {
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-/*Defines style of header*/
-header {
+h1 {
+  font-family:'Courier New', Courier, monospace;
   text-align: center;
-  padding: 20px;
-  padding-top: 0px;
-  color: #136111
 }
-/*Defines style of card*/
-.card {
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 5px;
-  border-width: 1px;
-  box-shadow: rgb(80, 92, 226) 0px 2px 8px 0px;
-  color: #136111;
-  font-size: 18px;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 30px 40px;
+ul {
+  list-style: none;
 }
-
-/*Page responsiveness to various sizes*/
-@media (max-width: 690px) {
-  .btn {
-    font-size: 1rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
-  }
+li {
+  font-family:'Courier New', Courier, monospace;
+  font-size: 1.5em;
+  list-style: none;
+  height: 40px;
 }
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
-  }
+header button {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
+p {
+  font-family:'Courier New', Courier, monospace
+}
+/* Quiz Classes */
+.quizContainer {
+  background-color: #b061ff;
+  border-radius: 6px;
+  width: 75%;
+  margin: auto;
+  padding-top: 5px;
+  position: relative;
+}
+.quizcontainer #quiz1 {
+  text-shadow:1px 1px 2px #6183ff;
+  font-family:"Courier New", Courier, monospace;
+}
+.question {
+  font-family:'Century', serif;
+  font-size: 1.5em;
+  font-weight:bold;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  border-radius: 6px;
+  background-color: #f3dc45;
+  text-align: center;
+}
+.quizMessage {
+  background-color: peachpuff;
+  border-radius: 6px;
+  width: 20%;
+  margin: auto;
+  text-align: center;
+  padding: 5px;
+  font-size:20px;
+  font-weight:bold;
+  font-family:'Gabriola', serif;
+  color: red;
+  position:absolute;
+  top:80%;
+  left:40%;
+}
+.choices {
+  font-family: 'Arial', serif;
+  color: #ed12cd;
+  font-size:15px;
+  font-weight:bold;
+}
+.result {
+  width: 40%;
+  height: auto;
+  border-radius: 6px;
+  background-color: linen;
+  margin: auto;
+  color:green;
+  text-align: center;
+  font-size:25px;
+  font-family:'Verdana', serif;
+  font-weight:bold;
+  position:absolute;
+  top:80%;
+  left:30%;
 }
