@@ -1,6 +1,7 @@
 var startQuizBtn = document.querySelector("#start-quiz");
 var possibleAnswersEl = document.querySelector("#choices");
 var quizQuestionEl = document.querySelector("#question");
+var highScoresEl = document.querySelector("#high-scores-section");
 
 
 //Quiz questions
@@ -34,13 +35,19 @@ startQuizBtn.addEventListener("click", startQuiz);
 //Quiz
 function startQuiz(){
   nextQuestion(0)
+  highScoresEl.setAttribute("style", "display:none;")
   startQuizBtn.setAttribute("style", "display:none;")
 }
 
 
 //Gets next question
 function nextQuestion(nextQuestionIndex) {
+  if (nextQuestionIndex >= questions.length){
+    endOfQuiz();
+    return;
+  }
   var currentQuestion = questions[nextQuestionIndex];
+  possibleAnswersEl.innerHTML = "";
   quizQuestionEl.textContent = currentQuestion.question;
 
   
@@ -69,4 +76,15 @@ function checkAnswer(event) {
     console.log("Wrong Answer!");
   }
   
+}
+
+
+//End of quiz housekeeping
+function endOfQuiz(){
+    quizQuestionEl.innerHTML="";
+    possibleAnswersEl.innerHTML="";
+    highScoresEl.setAttribute("style", "display:block");
+    startQuizBtn.setAttribute("style", "display:block");
+    startQuizBtn.textContent = "Try Again!";
+
 }

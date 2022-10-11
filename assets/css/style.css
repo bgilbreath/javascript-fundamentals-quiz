@@ -20,63 +20,6 @@ header button {
 p {
   font-family:'Courier New', Courier, monospace
 }
-/* Quiz Classes */
-.quizContainer {
-  background-color: #b061ff;
-  border-radius: 6px;
-  width: 75%;
-  margin: auto;
-  padding-top: 5px;
-  position: relative;
-}
-.quizcontainer #quiz1 {
-  text-shadow:1px 1px 2px #6183ff;
-  font-family:"Courier New", Courier, monospace;
-}
-.question {
-  font-family:'Century', serif;
-  font-size: 1.5em;
-  font-weight:bold;
-  width: 100%;
-  height: auto;
-  margin: auto;
-  border-radius: 6px;
-  background-color: #f3dc45;
-  text-align: center;
-}
-.quizMessage {
-  background-color: peachpuff;
-  border-radius: 6px;
-  width: 20%;
-  margin: auto;
-  text-align: center;
-  padding: 5px;
-  font-size:20px;
-  font-weight:bold;
-  font-family:'Gabriola', serif;
-  color: red;
-  position:absolute;
-  top:80%;
-  left:40%;
-}
-.choices {
-  font-family: 'Arial', serif;
-  color: #ed12cd;
-  font-size:15px;
-  font-weight:bold;
-}
-.result {
-  width: 40%;
-  height: auto;
-  border-radius: 6px;
-  background-color: linen;
-  margin: auto;
-  color:green;
-  text-align: center;
-  font-size:25px;
-  font-family:'Verdana', serif;
-  font-weight:bold;
-  position:absolute;
-  top:80%;
-  left:30%;
+#high-scores-section{
+  display:none;
 }
