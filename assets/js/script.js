@@ -8,7 +8,7 @@ var scoreSubmitBtn = document.querySelector("#score-submit-button");
 var highScoresListEl = document.querySelector("#high-scores-list");
 var initialsInputEl = document.querySelector("#initials-input");
 var highScoresMessageEl = document.querySelector("#high-scores-message");
-
+var initialsInputSectionEl = document.querySelector("#initials-input-section");
 
 var TIMER_START_SECOND = 60;
 
@@ -71,15 +71,12 @@ var questions = [
 ];
 
 
-//Button starts quiz
-startQuizBtn.addEventListener("click", startQuiz);
-
 //Quiz
 function startQuiz(){
   initTimer();
   nextQuestion(0);
-  highScoresEl.setAttribute("style", "display:none;")
-  startQuizBtn.setAttribute("style", "display:none;")
+  hideElement(highScoresEl);
+  hideElement(startQuizBtn);
 }
 
 //Handles timer 
@@ -96,7 +93,7 @@ function initTimer(){
   }, 1000);
 }
 
-//Gets next question
+//Next question
 function nextQuestion(nextQuestionIndex) {
   if (nextQuestionIndex >= questions.length){
     endOfQuiz();
@@ -106,7 +103,6 @@ function nextQuestion(nextQuestionIndex) {
   possibleAnswersEl.innerHTML = "";
   quizQuestionEl.textContent = currentQuestion.question;
 
-  
   for (var i = 0; i <currentQuestion.possibleAnswers.length; i++){
     var li = document.createElement("li");
     li.textContent = currentQuestion.possibleAnswers[i];
@@ -127,29 +123,19 @@ function nextQuestion(nextQuestionIndex) {
   }
 }
 
-
-//Check answer function
-function checkAnswer(event) {
-  if (event.target.textContent === currentQuestion.correctAnswer){
-    console.log("Correct Answer!");
-  } else {
-    console.log("Wrong Answer!");
-  }
-  
-}
-
-
 //End of quiz housekeeping
 function endOfQuiz(){
+    clearInterval(timerInterval);
+
     quizQuestionEl.innerHTML="";
     possibleAnswersEl.innerHTML="";
-    highScoresEl.setAttribute("style", "display:block");
-    startQuizBtn.setAttribute("style", "display:block");
     startQuizBtn.textContent = "Try Again!";
-    clearInterval(timerInterval);
-    highScoresListEl.setAttribute("style", "display:none;")
-    document.querySelector("#initials-input-section").setAttribute("style", "display:block;");
-    }
+    
+    hideElement(highScoresListEl);
+    showElement(initialsInputSectionEl);
+    showElement(highScoresEl);
+    showElement(startQuizBtn);
+  }
 
 //Submits score
 function submitScore(){
@@ -178,22 +164,31 @@ function submitScore(){
     localStorage.setItem("highScores", JSON.stringify(highScores));
     displayHighScores(highScores);
     initialsInputEl.value = "";
-    document.querySelector("#initials-input-section").setAttribute("style", "display:none;");
-
+    hideElement(initialsInputSectionEl);
   }
 
 //Displays highscores 
 function displayHighScores(highScores){
-    highScoresListEl.innerHTML="";
+    highScoresListEl.innerHTML=" ";
     for (var i= 0; i < highScores.length; i++){
       var currentScore = highScores[i];
       var li = document.createElement("li");
       li.textContent = `${currentScore.initials}: ${currentScore.score}`
       highScoresEl.appendChild(li);
     }
-    highScoresListEl.setAttribute("style", "display:block;")
-
+    showElement(highScoresListEl);
 }
+
+function showElement(element){
+  element.setAttribute("style","display:block;")
+}
+
+function hideElement(element){
+  element.setAttribute("style","display:none;")
+}
+
+//Button starts quiz
+startQuizBtn.addEventListener("click", startQuiz);
 
 //Submit score button functionality
 scoreSubmitBtn.addEventListener("click", submitScore);
