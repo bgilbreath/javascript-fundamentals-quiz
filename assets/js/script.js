@@ -2,8 +2,13 @@ var startQuizBtn = document.querySelector("#start-quiz");
 var possibleAnswersEl = document.querySelector("#choices");
 var quizQuestionEl = document.querySelector("#question");
 var highScoresEl = document.querySelector("#high-scores-section");
-var timerEl = document.querySelector("#timer")
-var rightOrWrongEl = document.querySelector("#right-or-wrong")
+var timerEl = document.querySelector("#timer");
+var rightOrWrongEl = document.querySelector("#right-or-wrong");
+var scoreSubmitBtn = document.querySelector("#score-submit-button");
+var highScoresListEl = document.querySelector("#high-scores-list");
+var initialsInputEl = document.querySelector("#initials-input");
+var highScoresMessageEl = document.querySelector("#high-scores-message");
+
 
 var TIMER_START_SECOND = 60;
 
@@ -24,15 +29,45 @@ var questions = [
     correctAnswer: "Document Object Model"
   },
   {
-  question: "JavaScript Question 2 Placeholder",
+  question: "The JavaScript tag goes inside of which HTML element?",
   possibleAnswers: [
-      "Wrong Answer",
-      "Wrong Answer",
-      "Correct Answer",
-      "Wrong Answer"
+      "<tag>",
+      "<div>",
+      "<script>",
+      "<javascript>"
   ],
-  correctAnswer: "Correct Answer"
-  }
+  correctAnswer: "<script>"
+  }, 
+  {
+    question: "Where is the correct place to insert a JavaScript?",
+    possibleAnswers: [
+        "Body section",
+        "Head Section",
+        "Both the body and/or the head section",
+        "Footer"
+    ],
+    correctAnswer: "Both the body and/or the head section"
+    }, 
+    {
+      question: "How do you call a function named myFunction?",
+      possibleAnswers: [
+          "myFunction()",
+          "call myFunction",
+          "callfunction myFunction",
+          "#myFunction"
+      ],
+      correctAnswer: "myFunction()"
+      }, 
+      {
+        question: "How to write an IF statement in JavaScript?",
+        possibleAnswers: [
+            "if i = 5",
+            "if (i==5)",
+            "if i = 5 then",
+            "if i == 5"
+        ],
+        correctAnswer: "if (i==5)"
+        }
 ];
 
 
@@ -79,9 +114,11 @@ function nextQuestion(nextQuestionIndex) {
     li.addEventListener("click", function(event) {
       if (event.target.textContent === currentQuestion.correctAnswer){
         timer += 5;
+        timerEl.textContent = timer;
         rightOrWrongEl.textContent = "Correct!"
       } else {
         timer -=5;
+        timerEl.textContent = timer;
         rightOrWrongEl.textContent = "Wrong!"
       }
       nextQuestion(nextQuestionIndex+1);
@@ -110,5 +147,53 @@ function endOfQuiz(){
     startQuizBtn.setAttribute("style", "display:block");
     startQuizBtn.textContent = "Try Again!";
     clearInterval(timerInterval);
+    highScoresListEl.setAttribute("style", "display:none;")
+    document.querySelector("#initials-input-section").setAttribute("style", "display:block;");
+    }
+
+//Submits score
+function submitScore(){
+    var userInitials = initialsInputEl.value;
+    if (userInitials.length !== 2){
+      highScoresMessageEl.textContent = "Your must input 2 letters for your initials!"
+      return;
+    }
+    var highScores = localStorage.getItem("highScores");
+
+    if (highScores === null){
+      highScores = [];
+    } else {
+      highScores = JSON.parse(highScores);
+    }
+
+    highScores.push({
+      initials: userInitials,
+      score: timer
+    });
+
+    highScores = highScores.sort(function(a,b){
+      return b.score - a.score
+    })
+
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    displayHighScores(highScores);
+    initialsInputEl.value = "";
+    document.querySelector("#initials-input-section").setAttribute("style", "display:none;");
+
+  }
+
+//Displays highscores 
+function displayHighScores(highScores){
+    highScoresListEl.innerHTML="";
+    for (var i= 0; i < highScores.length; i++){
+      var currentScore = highScores[i];
+      var li = document.createElement("li");
+      li.textContent = `${currentScore.initials}: ${currentScore.score}`
+      highScoresEl.appendChild(li);
+    }
+    highScoresListEl.setAttribute("style", "display:block;")
 
 }
+
+//Submit score button functionality
+scoreSubmitBtn.addEventListener("click", submitScore);
