@@ -9,7 +9,7 @@ A JavaScript fundamentals quiz, complete with timer and highscores!
 
 ## Installation
 
-Project is a completed webpage, that can be visited via URL, 
+Project is a completed webpage, that can be visited via URL, https://bgilbreath.github.io/javascript-fundamentals-quiz/
 
 ## Usage
 
